@@ -1,0 +1,6 @@
+alert ("Enjoy Bekasi . . .")
+$(document).ready(function(){
+    $(".btn").click(function(){
+        $("nav ul").slideToggle(1000);
+    })
+})

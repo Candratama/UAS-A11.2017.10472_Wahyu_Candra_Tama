@@ -1,0 +1,98 @@
+<html>
+    <title>
+        Pemerintah Kota Bekasi
+    </title>
+    <link rel="stylesheet" href="startpage.css">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <body>
+    <!--header-->
+    <header>
+        <nav>
+            <div class="nav-container">
+                    <a href="startpage.html"><img src="img/logo2.png" alt="img"></a>
+                
+                <div class="btn">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div> 
+            <ul>
+                <li><a href="index.html">beranda</a></li>
+                <li><a href="linkbelumjadi.html">tentang kami</a></li>
+                <li><a href="kecamatan.html">kecamatan</a></li>
+                <li><a href="linkbelumjadi.html">regulasi</a></li>
+                <li><a href="linkbelumjadi.html">media</a></li>
+                <li><a href="trace.html">trace</a></li>
+            </ul>   
+        </nav>
+        <div class="banner">
+            <div class="banner-center">
+                <img src="img/logo.png" alt="img" width="100px">
+                <h1>Pemerintah Kota Bekasi</h1>
+                <h3>Cerdas, Kreatif, Maju, Sejahtera & Ihsan</h3>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+            $(".btn").click(function(){
+                $("nav ul").slideToggle(1000);
+            })
+            })
+        </script>
+    </header>
+    <!--end of header-->
+
+    <!--artikel-->
+    <center>
+    <div>
+        <p><button onclick="loadXMLDoc()">DAFTAR KECAMATAN DI BEKASI</button></p>
+
+        <table id="demo" border="1">
+        <tr><th>KODE POS</th><th>NAMA KECAMATAN</th></tr>
+        </table>
+
+        <script>
+        function loadXMLDoc() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            myFunction(this);
+            }
+        };
+        xmlhttp.open("GET", "kecamatan.xml" , true);
+        xmlhttp.send();
+        }
+
+        function myFunction(xml) {
+        var x, i, xmlDoc, table;
+        xmlDoc = xml.responseXML;
+        table = "<tr><th>KODE POS</th><th>NAMA KECAMATAN</th></tr>";
+        x = xmlDoc.getElementsByTagName("NAMAKECAMATAN")
+        for (i = 0; i < x.length; i++) { 
+            table += "<tr><td>" + 
+            x[i].getElementsByTagName("KODE")[0].childNodes[0].nodeValue +
+            "</td><td>" +
+            x[i].getElementsByTagName("KECAMATAN")[0].childNodes[0].nodeValue +
+            "</td></tr>";
+        }
+        document.getElementById("demo").innerHTML = table;
+        }
+        </script>
+
+        
+
+    </center>
+    </div>
+        
+    
+
+    <footer>
+            <p>PEMERINTAH KOTA BEKASI</p>
+    </footer>
+    <!--end of artikel-->
+    </body>
+    
+</html>
